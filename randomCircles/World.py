@@ -1,13 +1,3 @@
-'''
-Created on Jan 15, 2015
-
-@author: chewy
-'''
-'''
-Created on Jan 15, 2015
-
-@author: chewy
-'''
 
 from Ball import Ball
 import random, pygame, sys
@@ -26,14 +16,9 @@ NUMBER_BALLS = 100
 
 
 class World:
-
-    
-
     RED = (255,0,0)
     WHITE = (255, 255, 255)
     BLUE =(0,0,220)
-
-
  
     def __init__(self, WINDOWWIDTH, WINDOWHEIGHT, FPS):
         self.WINDOWWIDTH = WINDOWWIDTH
