@@ -70,8 +70,6 @@ class World:
             ball.acceleration.setVector(direction)
 
     def start(self):
-
-
         self.setup(ACCELERATION_CHOICE)
 
         print "Inicio"
@@ -106,11 +104,8 @@ class World:
                         self.f.add(self.eastWind)
                     else:
                         self.f.add(self.westWind)
-
-
             self.DISPLAYSURF.fill(World.WHITE)
             self.draw()
-        
             pygame.display.update()
             FPSCLOCK.tick(self.FPS)
 
