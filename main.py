@@ -1,5 +1,9 @@
 from PIL import Image
 
+def imprimir(all_pixels):
+    for pixel in all_pixels:
+        print pixel
+
 i = Image.open("imagenes/3.jpg")
 
 pixels = i.load()
@@ -11,8 +15,4 @@ for x in range(width):
         cpixel = pixels[x, y]
         all_pixels.append(cpixel)
 
-
-
-def imprimir(all_pixels):
-    for pixel in all_pixels:
-    print pixel
+imprimir(all_pixels)

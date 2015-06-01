@@ -71,10 +71,7 @@ class World:
 
     def start(self):
         self.setup(ACCELERATION_CHOICE)
-
         print "Inicio"
-        
-        
         global FPSCLOCK, DISPLAYSURF
         pygame.init()
         FPSCLOCK = pygame.time.Clock()

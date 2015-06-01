@@ -3,13 +3,10 @@ import random, pygame, sys
 from pygame.locals import *
 
 class Ball():
-
 	BACKGROUND_COLOR = (255, 255, 255)
 	DEFAULT_COLOR = (0, 0, 0)
 	DEFAULT_SIZE = 30
 	TRANSPARENT = (255,0,255)
-
-	
 
 	def __init__(self, width, height, 
 				x = -1, y = -1,
