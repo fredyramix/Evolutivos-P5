@@ -64,7 +64,7 @@ class Vector:
 		if m != 0:
 			self.div(m)
 		else:
-			print "It's not possible normilize thsi vector...division by 0"
+			print "It's not possible normilize this vector...division by 0"
 
 	def limit(self, limit):
 		if limit != 0.0:

@@ -23,10 +23,6 @@ class World:
     def __init__(self, WINDOWWIDTH, WINDOWHEIGHT, FPS):
         self.WINDOWWIDTH = WINDOWWIDTH
         self.WINDOWHEIGHT = WINDOWHEIGHT
-        self.FPS = FPS
-        self.mousex = 0
-        self.mousey = 0
-        self.movement = True
 
     def setup(self, at):
         '''
@@ -70,7 +66,7 @@ class World:
             ball.acceleration.setVector(direction)
 
     def start(self):
-        self.setup(ACCELERATION_CHOICE)
+        #self.setup(ACCELERATION_CHOICE)
         print "Inicio"
         global FPSCLOCK, DISPLAYSURF
         pygame.init()
