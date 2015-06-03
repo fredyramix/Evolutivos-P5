@@ -1,27 +1,22 @@
-from PIL import Image, ImageDraw
-import sys
 import pygame
+from pygame.locals import *
+HIGH=300
+WIDTH=300
+TRANSPARENT = (255,0,255)
+
 pygame.init()
-screen = pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode((WIDTH,HIGH))
+surf1 = pygame.Surface((200,200))
+surf1.fill(TRANSPARENT)
+surf1.set_colorkey(TRANSPARENT)
+#surface, color, position, radio, width
 
-screen.fill((0,0,0))
-
+pygame.draw.circle(surf1, (0,0,200,100),(12,50),50)
+surf1.set_alpha(100)
 while True:
-
+    screen.fill((255,255,255))
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-            sys.exit()
-
-        if event.type == MOUSEBUTTONDOWN:
-            # draw background first (however)
-            screen.fill((0,0,0))
-
-            # draw your other layers (mouse image)
-
-            # draw the circle
-            color = (255,255,255)
-            posx,posy = pygame.mouse.get_pos()
-            pygame.draw.circle(screen, color, (posx,posy), 50)
-
-    pygame.display.update()
+    screen.blit(surf1, (100,100,100,100))
+    pygame.display.flip()

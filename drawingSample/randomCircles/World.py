@@ -1,3 +1,13 @@
+'''
+Created on Jan 15, 2015
+
+@author: chewy
+'''
+'''
+Created on Jan 15, 2015
+
+@author: chewy
+'''
 
 from Ball import Ball
 import random, pygame, sys
@@ -16,13 +26,22 @@ NUMBER_BALLS = 100
 
 
 class World:
+
+    
+
     RED = (255,0,0)
     WHITE = (255, 255, 255)
     BLUE =(0,0,220)
+
+
  
     def __init__(self, WINDOWWIDTH, WINDOWHEIGHT, FPS):
         self.WINDOWWIDTH = WINDOWWIDTH
         self.WINDOWHEIGHT = WINDOWHEIGHT
+        self.FPS = FPS
+        self.mousex = 0
+        self.mousey = 0
+        self.movement = True
 
     def setup(self, at):
         '''
@@ -66,8 +85,13 @@ class World:
             ball.acceleration.setVector(direction)
 
     def start(self):
-        #self.setup(ACCELERATION_CHOICE)
+
+
+        self.setup(ACCELERATION_CHOICE)
+
         print "Inicio"
+        
+        
         global FPSCLOCK, DISPLAYSURF
         pygame.init()
         FPSCLOCK = pygame.time.Clock()
@@ -97,8 +121,11 @@ class World:
                         self.f.add(self.eastWind)
                     else:
                         self.f.add(self.westWind)
+
+
             self.DISPLAYSURF.fill(World.WHITE)
             self.draw()
+        
             pygame.display.update()
             FPSCLOCK.tick(self.FPS)
 
