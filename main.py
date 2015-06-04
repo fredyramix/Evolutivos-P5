@@ -15,7 +15,7 @@ B= 200
 A = 100
 X= 10
 Y= 10
-r= random.randint(0,10)
+r= random.randint(10,50)
 
 
 #iniciamos pygame
@@ -29,7 +29,7 @@ pygame.display.set_caption('Image Generator')
 #reloj = pygame.time.Clock()
 
 #Aqui es donde colocamos el fondo a la pantalla
-fondo = cargar_imagen('imagenes/pruebas/white.jpg')
+fondo = cargar_imagen('EstrategiaEvolutiva/imagenes/perrito.jpg')
 pantalla.blit(fondo, (0, 0)) #es para esto que nos sirvio poner en una
                              #variable los datos de la pantalla
 pygame.display.flip()
@@ -50,18 +50,18 @@ while 1:
     B= random.randint(0,255)
     X= random.randint(0,HIGH)
     Y= random.randint(0,WIDTH)
-    r= random.randint(0,10)
+    r= random.randint(20,70)
     surf1 = pygame.Surface((HIGH,WIDTH))
     surf1.fill(TRANSPARENT)
     surf1.set_colorkey(TRANSPARENT)
     pygame.draw.circle(surf1, (R,G,B,A),(X,Y),r)
     surf1.set_alpha(100)
-    pantalla.blit(surf1, (100,100,100,100))
+    pantalla.blit(surf1, (0,0))
     pygame.display.flip()
-    pygame.display.update()
-    if generation % 1000 ==0:
-        pygame.image.save(pantalla, "imagenes/soluciones/"+str(generation)+".jpg")
+    #pygame.display.update()
+    #if generation % 1000 ==0:
+    #pygame.image.save(pantalla, "imagenes/soluciones/"+str(generation)+".jpg")
     #comp = Comparate()
     generation = generation+1
-    #raw_input("Espera")
+    raw_input("Espera")
  #reloj.tick(60)

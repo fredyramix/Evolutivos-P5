@@ -3,7 +3,9 @@ __author__ = 'fredy'
 import random
 from math import cos,sin
 from math import pi
+import shutil
 from funciones import *
+import os
 from GeneraAleatorios import aleatorios
 from Mutacion import Mutar
 from VerificarExitos import modificar_exitos
@@ -12,47 +14,39 @@ from Salida import Escribir
 
 
 def main():
+    dest="padres/"
     # [numero_de_variables,X,Y,r,sigma,generaciones]
-    variables = [6,300,300,10,0.1,10000]
+    original="imagenes/perrito.jpg"
+    fondo="imagenes/white.jpg"
+    variables = [6,300,300,25,0.1]
+    GENERACIONES = 10
     TAMANO_POBLACION = 20
     numerito = 20 #PARA VER CADA CUANTAS VECES GUARDAR. %
     exitos = 0
-    d=variables[0]
+    d=variables[0] #numero de variables del problema
     Q=[] # LISTA DE SIGMAS.
+
     fun  = 0
     W=variables[1]
     H=variables[2]
     r=variables[3]
     sigma=variables[4]
-    generaciones = variables[5]
+    #bandera para saber si son padres o mutaciones
+    bandera = True
+    #generaciones = variables[5]
     #En este paso agregamos todas nuestras sigmas
     for b in range(0,TAMANO_POBLACION):
         Q.append(sigma)
-    #d=int(variables[fun][0])
-    #abrimos el archivo con el nombre de la función.
-    #outfile=open("Resultados/"+variables[fun][4],'w')
-
     #Comienza la población aleatoria
     poblacion = []
     for t in range(0,TAMANO_POBLACION):
-        poblacion.append(aleatorios(W,H,r,d))
-    print poblacion
-    raw_input("esperad...")
-    aptitudes=Elegir(fun,poblacion)
-    a ="Poblacion Inicial:"
-    print a
-    Escribir(outfile,a)
-    for  l in range(0,len(poblacion)):
-        a = "Indiviuo: " +str(l)
-        Escribir(outfile,a)
-        a = "\tVector: "+ str(poblacion[l])
-        Escribir(outfile,a)
-        a= "\tAptitud: " + str(aptitudes[l])
-        Escribir(outfile,a)
+        poblacion.append(aleatorios(W,H,r,fondo))
+    aptitudes=evaluar(poblacion,original,bandera)
     mutaciones = []
+    bandera = False
     for f in range(0,len(poblacion)):
         mutaciones.append(Mutar(poblacion[f],Q[f]))
-    aptitudeshijos = Elegir(fun,mutaciones)
+    aptitudeshijos = evaluar(mutaciones,original,bandera)
     arregloexitos=[]
     for s in range(0,len(poblacion)):
         if comparar(aptitudes[s],aptitudeshijos[s]):
@@ -61,16 +55,17 @@ def main():
             ap = aptitudeshijos[s]
             poblacion[s] = m[:] #sustituimos al padre
             aptitudes[s]=ap
+            poblacion[s][6]="padres/"+str(s)+".jpg"
+            ima="mutadas/"+str(s)+".jpg"
+            shutil.copy(ima,dest)
         else:
             arregloexitos.append(0)
     g=0
-    a = "======================================================================================================================"
-    Escribir(outfile,a)
     print "Calculando...."
-    while g != generaciones:
+    while g != GENERACIONES:
         for f in range(0,len(poblacion)):
             mutaciones[f]=Mutar(poblacion[f],Q[f])
-        aptitudeshijos = Elegir(fun,mutaciones)
+        aptitudeshijos = evaluar(mutaciones,original,bandera)
         for s in range(0,len(poblacion)):
             if comparar(aptitudes[s],aptitudeshijos[s]):
                 ar= arregloexitos[s]
@@ -79,12 +74,18 @@ def main():
                 ap = aptitudeshijos[s]
                 poblacion[s] = m[:] #sustituimos al padre
                 aptitudes[s]=ap
+                poblacion[s][6]="padres/"+str(s)+".jpg"
+                ima="mutadas/"+str(s)+".jpg"
+                shutil.copy(ima,dest)
             if g%numerito ==0:
                 Q[s]=modificar_exitos(exitos,Q[s],numerito)
                 exitos=0
         g = g+1
+
+    raw_input("Espera")
     dic = {}
     a= "Poblacion Final:"
+    raw_input("essss")
     Escribir(outfile,a)
 
     for  l in range(0,len(poblacion)):
