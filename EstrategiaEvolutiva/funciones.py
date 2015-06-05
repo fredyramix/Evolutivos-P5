@@ -38,6 +38,8 @@ def evaluar(poblacion,original,bandera):
         FONDO=individuo[6]
         COLOR=(R,G,B)
         POSICION=(X,Y)
+        #print "Generacion: "+ str(generation)+" R:"+str(R) +" G:"+str(G)+ " B:"+str(B)+ " X:"+str(X)+ " Y:"+str(Y)
+        #print FONDO
         pygame.init()
         screen = pygame.display.set_mode((300,300))
         surf1 = pygame.Surface((500,500))
@@ -56,11 +58,15 @@ def evaluar(poblacion,original,bandera):
         pygame.display.flip()
         if bandera==True:
             hijo="padres/"+str(generation)+".jpg"
+            individuo[6]=hijo
         else:
+            #raw_input("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
             hijo="mutadas/"+str(generation)+".jpg"
+            individuo[6]=hijo
         pygame.image.save(screen,hijo)
         generation += 1
         actitudes.append(comparate(original,hijo))
+        #raw_input("zzzzzzzzzzzzzzzzzzzzzzz")
     pygame.quit()
     return actitudes
 

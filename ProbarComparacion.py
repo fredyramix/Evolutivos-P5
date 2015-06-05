@@ -7,8 +7,8 @@ import math, operator
 import Image
 
 def Comparate():
-    im1=Image.open("imagenes/soluciones/1000.jpg").histogram()
-    im2=Image.open("imagenes/soluciones/3000.jpg").histogram()
+    im1=Image.open("EstrategiaEvolutiva/padres/2.jpg").histogram()
+    im2=Image.open("EstrategiaEvolutiva/mutadas/2.jpg").histogram()
     rms = math.sqrt(reduce(operator.add, map(lambda a,b: (a-b)**2, im1, im2))/len(im1))
     return rms
 a=Comparate()
